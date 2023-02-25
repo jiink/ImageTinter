@@ -12,11 +12,15 @@ function previewImage(input) {
 }
 </script>
 
-<form>
-  <p>hello</p>
+<head>
+  <title>ImageTinter</title>
+</head>
+
+<body>
+  <p>goodbye</p>
   <input type="file" accept="image/*" onchange="previewImage(this)">
   <img id="preview">
-</form>
+</body>
 
 <style>
 * {
@@ -56,3 +60,22 @@ form {
   color: black;
 }
 </style>
+
+<!-- function previewImage(input) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = document.getElementById('preview');
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+input[type="file"] {
+  display: block;
+  margin-bottom: 10px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+} -->
