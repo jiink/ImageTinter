@@ -1,0 +1,58 @@
+<script>
+$(document).on('submit',null, null,function (e) {
+    alert('Save Successful');
+    //prevent the form from doing a submit
+    e.preventDefault();
+    return false;
+});
+
+function previewImage(input) {
+  const reader = new FileReader();
+  console.log("HELLO!");
+}
+</script>
+
+<form>
+  <p>hello</p>
+  <input type="file" accept="image/*" onchange="previewImage(this)">
+  <img id="preview">
+</form>
+
+<style>
+* {
+  margin: 0 auto;
+  font-family: Helvetica;
+}
+html {
+  background-color: #e9e9e9;
+}
+#first {
+  display: inline-block;
+  width: 10em;
+  padding-left: 4em;
+}
+label {
+  display: block;
+  width: 10em;
+}
+input {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+input[name=save] {
+  display: block;
+  margin-top: 10px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+form {
+  width: 18em;
+  padding: 10px 0px;
+  margin-top: 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px;
+  border: 1px solid gray;
+  background-color: #ffffff;
+  color: black;
+}
+</style>
