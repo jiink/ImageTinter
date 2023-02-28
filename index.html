@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <script>
 // $(document).on('submit',null, null,function (e) {
 //     alert('Save Successful');
@@ -13,49 +15,27 @@ function previewImage(input) {
   const reader = new FileReader();
   console.log("HELLO!");
   reader.onload = function (e) {
+	console.log("Loaded!");
     const img = document.getElementById('preview');
     img.src = e.target.result;
   };
-  reader.readAsDataURL(input.files[0]);
 
-  // Produce tinted versions
-  const img = document.getElementById('preview');
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  // Set the canvas dimensions to match the image
-  canvas.width = img.width;
-  canvas.height = img.height;
-
-  // Draw the image onto the canvas
-  ctx.drawImage(img, 0, 0);
-
-  // Create a color-tinted version of the image using a red color overlay
-  ctx.globalCompositeOperation = 'multiply';
-  ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Convert the canvas data to a data URL and create an <img> element for each tinted version
-  const dataUrlRed = canvas.toDataURL();
-  const imgRed = document.createElement('img');
-  imgRed.src = dataUrlRed;
-
-  // Append the <img> elements to a container element
-  const container = document.getElementById('tinted-images')
-  container.appendChild(imgRed);
 }
 </script>
-
+<html>
 <head>
-  <title>ImageTinter</title>
+	<meta charset="utf-8">
+  	<title>ImageTinter</title>
 </head>
 
 <body>
   <p>Upload your image, and tint it!!</p>
-  <input type="file" accept="image/*" onchange="previewImage(this)">
+  <input type="file" id="input-file" accept="image/*" onchange="previewImage(this)">
   <img id="preview">
   <div id="tinted-images"></div>
+  <script src="script.js"></script>
 </body>
+</html>
 
 <style>
 * {
