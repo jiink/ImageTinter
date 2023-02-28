@@ -1,14 +1,48 @@
 <script>
-$(document).on('submit',null, null,function (e) {
-    alert('Save Successful');
-    //prevent the form from doing a submit
-    e.preventDefault();
-    return false;
-});
+// $(document).on('submit',null, null,function (e) {
+//     alert('Save Successful');
+//     //prevent the form from doing a submit
+//     e.preventDefault();
+//     return false;
+// });
 
+// Runs when an image is selected
 function previewImage(input) {
+  
+  // Update the img to show the selected image
   const reader = new FileReader();
   console.log("HELLO!");
+  reader.onload = function (e) {
+    const img = document.getElementById('preview');
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+
+  // Produce tinted versions
+  const img = document.getElementById('preview');
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Set the canvas dimensions to match the image
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  // Draw the image onto the canvas
+  ctx.drawImage(img, 0, 0);
+
+  // Create a color-tinted version of the image using a red color overlay
+  ctx.globalCompositeOperation = 'multiply';
+  ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Convert the canvas data to a data URL and create an <img> element for each tinted version
+  const dataUrlRed = canvas.toDataURL();
+  const imgRed = document.createElement('img');
+  imgRed.src = dataUrlRed;
+
+  // Append the <img> elements to a container element
+  const container = document.getElementById('tinted-images')
+  container.appendChild(imgRed);
 }
 </script>
 
@@ -17,9 +51,10 @@ function previewImage(input) {
 </head>
 
 <body>
-  <p>goodbye</p>
+  <p>Upload your image, and tint it!!</p>
   <input type="file" accept="image/*" onchange="previewImage(this)">
   <img id="preview">
+  <div id="tinted-images"></div>
 </body>
 
 <style>
@@ -28,46 +63,7 @@ function previewImage(input) {
   font-family: Helvetica;
 }
 html {
-  background-color: #e9e9e9;
-}
-#first {
-  display: inline-block;
-  width: 10em;
-  padding-left: 4em;
-}
-label {
-  display: block;
-  width: 10em;
-}
-input {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-input[name=save] {
-  display: block;
-  margin-top: 10px;
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
-}
-form {
-  width: 18em;
-  padding: 10px 0px;
-  margin-top: 20px;
-  -webkit-border-radius: 20px 20px 20px 20px;
-  border-radius: 20px 20px 20px 20px;
-  border: 1px solid gray;
-  background-color: #ffffff;
-  color: black;
-}
-</style>
-
-<!-- function previewImage(input) {
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const img = document.getElementById('preview');
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(input.files[0]);
+  background-color: #b3aaaa;
 }
 
 input[type="file"] {
@@ -78,4 +74,6 @@ input[type="file"] {
 img {
   max-width: 100%;
   height: auto;
-} -->
+}
+
+</style>
