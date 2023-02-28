@@ -9,43 +9,70 @@ const palette = [
 const inputFile = document.getElementById('input-file');
 inputFile.addEventListener('change', handleFileSelect, false);
 
+function tintImage(image, color) {
+	const canvas = document.createElement('canvas');
+	canvas.width = image.width;
+	canvas.height = image.height;
+	const ctx = canvas.getContext('2d');
+
+	ctx.drawImage(image, 0, 0);
+
+	// convert hex color string to RGB object
+	const hexToRgb = hex => ({
+		r: parseInt(hex.substring(1, 3), 16),
+		g: parseInt(hex.substring(3, 5), 16),
+		b: parseInt(hex.substring(5, 7), 16)
+	});
+
+	const rgbColor = typeof color === 'string' ? hexToRgb(color) : color;
+
+	const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+	const data = imageData.data;
+
+	const r = rgbColor.r / 255;
+	const g = rgbColor.g / 255;
+	const b = rgbColor.b / 255;
+
+	for (let i = 0; i < data.length; i += 4) {
+		const alpha = data[i + 3] / 255;
+		data[i] *= r * alpha;
+		data[i + 1] *= g * alpha;
+		data[i + 2] *= b * alpha;
+	}
+
+	ctx.putImageData(imageData, 0, 0);
+	return canvas.toDataURL();
+}
+
 function handleFileSelect(event) {
 	console.log("go script.js!!");
+
+	// Clear the "tinted-images" container
+	const container = document.getElementById('tinted-images');
+	container.innerHTML = '';
+
 	// Get the selected file and create a URL for it
 	const selectedFile = event.target.files[0];
 	const url = URL.createObjectURL(selectedFile);
-  
+
 	// Display the selected image in the preview element
 	const preview = document.getElementById('preview');
 	preview.src = url;
-  
+
 	// Generate the tinted versions of the image and display them on the canvas
 	const img = new Image();
 	img.src = url;
-	img.onload = function() {
-		const canvas = document.createElement('canvas');
-		const ctx = canvas.getContext('2d');
-
-		// Set the canvas dimensions to match the image
-		canvas.width = img.width;
-		canvas.height = img.height;
-
-		// Draw the original image onto the canvas
-		ctx.drawImage(img, 0, 0);
-
-		// Create a color-tinted version of the image using a red color overlay
-		ctx.globalCompositeOperation = 'multiply';
-		ctx.fillStyle = palette[0];
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+	img.onload = function () {
 
 		// Convert the canvas data to a data URL and create an <img> element for each tinted version
-		const dataUrlRed = canvas.toDataURL();
-		const imgRed = document.createElement('img');
-		imgRed.src = dataUrlRed;
+
+		const dataUrlResult = tintImage(img, palette[0]);
+		const imgResult = document.createElement('img');
+		imgResult.src = dataUrlResult;
 
 		// Append the <img> elements to a container element
 		const container = document.getElementById('tinted-images')
-		container.appendChild(imgRed);
+		container.appendChild(imgResult);
 		//reader.readAsDataURL(input.files[0]);
 	}
 }
