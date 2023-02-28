@@ -63,16 +63,14 @@ function handleFileSelect(event) {
 	const img = new Image();
 	img.src = url;
 	img.onload = function () {
+		for (let i = 0; i < palette.length; i++){
+			const dataUrlResult = tintImage(img, palette[i]);
+			const imgResult = document.createElement('img');
+			imgResult.src = dataUrlResult;
 
-		// Convert the canvas data to a data URL and create an <img> element for each tinted version
-
-		const dataUrlResult = tintImage(img, palette[0]);
-		const imgResult = document.createElement('img');
-		imgResult.src = dataUrlResult;
-
-		// Append the <img> elements to a container element
-		const container = document.getElementById('tinted-images')
-		container.appendChild(imgResult);
-		//reader.readAsDataURL(input.files[0]);
+			// Append the <img> elements to a container element
+			const container = document.getElementById('tinted-images')
+			container.appendChild(imgResult);
+		}
 	}
 }
