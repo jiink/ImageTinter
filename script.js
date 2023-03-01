@@ -6,6 +6,14 @@ const palette = [
 	"#008081", "#004771", "#55007F", "#242424"
 ];
 
+const paletteNames = [
+	"Pink", "Rose", "Red", "Orange",
+	"Yellow", "Lime", "Green", "Cyan",
+	"Sky Blue", "Blue", "Indigo", "Violet",
+	"Maroon", "Brown", "Gold", "Dark Green",
+	"Teal", "Navy Blue", "Purple", "Black"
+];
+
 const inputFile = document.getElementById('input-file');
 inputFile.addEventListener('change', handleFileSelect, false);
 
@@ -67,6 +75,12 @@ function handleFileSelect(event) {
 			const dataUrlResult = tintImage(img, palette[i]);
 			const imgResult = document.createElement('img');
 			imgResult.src = dataUrlResult;
+
+			// Make it clickable!
+			imgResult.addEventListener('click', function() {
+				console.log("Clicked!");
+				document.getElementById('output-img').src = this.src;
+			});
 
 			// Append the <img> elements to a container element
 			const container = document.getElementById('tinted-images')

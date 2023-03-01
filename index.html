@@ -33,6 +33,9 @@ function previewImage(input) {
   <input type="file" id="input-file" accept="image/*" onchange="previewImage(this)">
   <img id="preview">
   <div id="tinted-images"></div>
+  <div id="output-box">
+	<img id="output-img">
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
@@ -51,9 +54,20 @@ input[type="file"] {
   margin-bottom: 10px;
 }
 
-img {
-  max-width: 100px;
-  height: auto;
+#preview {
+  width: 100px;
+  height: 100px;
+}
+
+#tinted-images img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+#output-img {
+  width: 200px;
+  height: 200px;
 }
 
 </style>
