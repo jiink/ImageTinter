@@ -32,9 +32,10 @@ function previewImage(input) {
 <body>
 	<div class="container">
 		<div class="column">
-			<p>Upload your image, and tint it!!</p>
-			<input type="file" id="input-file" accept="image/*" onchange="previewImage(this)">
-			<img id="preview">
+			<label for="input-file">
+				<img id="preview" style="cursor: pointer;">
+			</label>
+			<input type="file" id="input-file" accept="image/*" onchange="previewImage(this)" style="display: none;">
 		</div>
 		<div class="column">
 			<div id="tinted-images"></div>
@@ -42,7 +43,7 @@ function previewImage(input) {
 		<div class="column">
 			<div id="output-box">
 				<img id="output-img">
-				<h2 id="color-label">Hello</h2>
+				<h2 id="color-label">Color</h2>
 			</div>
 		</div>
 	</div>
