@@ -63,6 +63,13 @@ html {
   background-color: #777777;
 }
 
+body {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -74,19 +81,53 @@ html {
 }
 
 .column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #555555;
-  /* border-radius: 10px;
-  border-color: #333333; */
-  border: 3px solid #333333;
-  border-radius: 10px;
-  
-  padding: 10px;
-  margin: 10px;
+	height: 100%;
+	width: 33.33%;
+	box-sizing: border-box;
+	padding: 10px;
+
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #555555;
+	/* border-radius: 10px;
+	border-color: #333333; */
+	border: 3px solid #333333;
+	border-radius: 10px;
+	
+	padding: 10px;
+	margin: 10px;
+}
+
+@media (orientation: portrait) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (orientation: landscape) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .column {
+    width: calc(33.33% - 20px);
+    height: auto;
+    margin-right: 20px;
+  }
+
+  .column:last-child {
+    margin-right: 0;
+  }
 }
 
 .upload-icon {
