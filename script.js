@@ -59,6 +59,14 @@ function handleFileSelect(event) {
 	const container = document.getElementById('tinted-images');
 	container.innerHTML = '';
 
+	// Clear the output container
+	const outputBox = document.getElementById('output-img')
+	outputBox.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+	// Reset the color label
+	const colorLabel = document.getElementById('color-label');
+	colorLabel.textContent = "Color";
+
 	// Get the selected file and create a URL for it
 	const selectedFile = event.target.files[0];
 	const url = URL.createObjectURL(selectedFile);
