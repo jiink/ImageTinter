@@ -1,199 +1,255 @@
 <!DOCTYPE html>
 
 <script>
-// $(document).on('submit',null, null,function (e) {
-//     alert('Save Successful');
-//     //prevent the form from doing a submit
-//     e.preventDefault();
-//     return false;
-// });
+  // $(document).on('submit',null, null,function (e) {
+  //     alert('Save Successful');
+  //     //prevent the form from doing a submit
+  //     e.preventDefault();
+  //     return false;
+  // });
 
-// Runs when an image is selected
-function previewImage(input) {
-  
-  // Update the img to show the selected image
-  const reader = new FileReader();
-  console.log("HELLO!");
-  reader.onload = function (e) {
-	console.log("Loaded!");
-    const img = document.getElementById('preview');
-    img.src = e.target.result;
-  };
-
-}
+  // Runs when an image is selected
+  function previewImage(input) {
+    // Update the img to show the selected image
+    const reader = new FileReader();
+    console.log("HELLO!");
+    reader.onload = function (e) {
+      console.log("Loaded!");
+      const img = document.getElementById("preview");
+      img.src = e.target.result;
+    };
+  }
 </script>
 
 <html>
-<head>
-	<meta charset="utf-8">
-  	<title>ImageTinter</title>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>ImageTinter</title>
+  </head>
 
-<body>
-	<div class="container">
-		<div class="column">
-			<div class="input-container">
-				<label for="input-file" class="upload-area">
-					<img id="preview" class="upload-icon" style="cursor: pointer;">
-				</label>
-				<input type="file" id="input-file" accept="image/*" onchange="previewImage(this)" style="display: none;">
-			</div>
-		</div>
-		<div class="column" id="column-fill">
-			<div id="tinted-images"></div>
-		</div>
-		<div class="column" id="column-fill">
-			<div id="output-box">
-				<img id="output-img">
-				<h2 id="color-label">Color</h2>
-			</div>
-		</div>
-	</div>
-	<script src="script.js"></script>
-</body>
+  <body>
+    <div class="container">
+      <div class="column" id="input-column">
+        <div class="input-container">
+          <label for="input-file" class="upload-area">
+            <img
+              id="preview"
+              class="upload-icon"
+              style="cursor: pointer"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            />
+          </label>
+          <input
+            type="file"
+            id="input-file"
+            accept="image/*"
+            onchange="previewImage(this)"
+            style="display: none"
+          />
+        </div>
+      </div>
+      <div class="column column-fill" id="selection-column">
+        <div id="tinted-images"></div>
+      </div>
+      <div class="column column-fill" id="output-column">
+        <div id="output-box">
+          <img
+            id="output-img"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          />
+          <h2 id="color-label">Color</h2>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
 
 <style>
-* {
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Helvetica;
-}
+  * {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+  }
 
-html {
-  background-color: #777777;
-}
+  html {
+    background-color: #777777;
+  }
 
-body {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: flex-start;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-}
-
-.column.middle {
-  display: flex;
-  justify-content: center;
-}
-
-
-
-.column {
-	height: 100%;
-	width: 33.33%;
-	box-sizing: border-box;
-	padding: 10px;
-
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	
-	
-	padding: 10px;
-	margin: 10px;
-}
-
-#column-fill {
-	background-color: #555555;
-	border: 3px solid #333333;
-	border-radius: 10px;
-}
-
-@media (orientation: portrait) {
-  .container {
+  body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 
-  .column {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media (orientation: landscape) {
   .container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 6%;
+  }
+
+  #input-column {
+    padding-top: 0px;
   }
 
   .column {
-    width: calc(33.33% - 20px);
-    height: auto;
-    margin-right: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 10px;
+    margin: 10px;
   }
 
-  .column:last-child {
-    margin-right: 0;
+  .column-fill {
+    background-color: #555555;
+    border: 3px solid #333333;
+    border-radius: 10px;
   }
-}
 
-.upload-icon {
-  background-image: url('uploadIcon.png');
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-}
+  @media (orientation: portrait){
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.input-container {
-	background-color: #555555;
-	border: 3px solid #333333;
-	border-radius: 10px;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 5px;
-	padding-bottom: 2px;
-}
+    .column {
+      width: 90%;
+      height: auto;
+    }
 
-#output-box {
-	/* background-color: #555555; */
-	border-radius: 10px;
-	padding: 10px;
-	margin: 10px;
-}
+    #input-column {
+      flex-basis: 30%;
+    }
+    #selection-column {
+      flex-basis: 400px;
+    }
+    #output-column {
+      flex-basis: 30%;
+    }
 
-input[type="file"] {
-  display: block;
-  margin-bottom: 10px;
-}
+    #preview {
+      width: 25vw;
+      height: 25vw;
+    }
 
-#preview {
-	width: 6vw;
-	height: 6vw;
-}
+    #tinted-images img {
+      width: 150px;
+      height: 150px;
+      padding: 5px;
+      background-color: #555555;
+    }
 
-#tinted-images img {
-	width: 6vw;
-	height: 6vw;
-	/* margin-right: 5px; */
-	background-color: #555555;
-}
+    #output-img {
+      width: 512px;
+      height: 512px;
+    }
+  }
 
-#output-img {
-  width: 15vw;
-  height: 15vw;
-}
+  @media (orientation: landscape) {
+    .container {
+      display: flex;
+      flex-direction: row;
+    }
 
-#color-label {
-	text-align: center;
-}
+    .column {
+      /* width: calc(20.33% - 20px); */
+      height: auto;
+      margin-right: 20px;
+      align-items: center;
+    }
 
-img {
-  border: none;
-}
+    #input-column {
+      flex-basis: 10%;
+    }
+    #selection-column {
+      flex-basis: 400px;
+    }
+    #output-column {
+      flex-basis: 30%;
+    }
 
+    .input-container {
+      margin-right: 2px;
+    }
 
+    #preview {
+      width: 100px;
+      height: 100px;
+    }
+
+    #tinted-images {
+      justify-content: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    #tinted-images img {
+      width: 110px;
+      height: 110px;
+      padding: 5px;
+      background-color: #555555;
+    }
+
+    #output-img {
+      width: 256px;
+      height: 256px;
+    }
+  }
+
+  .upload-icon {
+    background-image: url("uploadIcon.png");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  }
+
+  .input-container {
+    background-color: #555555;
+    border: 3px solid #333333;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  #output-box {
+    /* background-color: #555555; */
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #color-label {
+    text-align: center;
+  }
+
+  img {
+    border: none;
+  }
 </style>
