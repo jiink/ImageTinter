@@ -187,7 +187,7 @@ function processImageEntry(imgUrl) {
         document.getElementById("output-img").src = this.src;
         document.getElementById("color-label").textContent =
           this.classList[0].replace(/-/g, " ");
-        document.getElementById("color-label").style.color = palette[i];
+          document.getElementById("color-label").style.color = palette[i];
       });
 
       // Append the <img> elements to a container element
