@@ -47,6 +47,10 @@
             style="display: none"
           />
         </div>
+        <div class="input-container">
+          <input type="text" id="input-link" placeholder="OR enter image URL" onkeydown="if (event.keyCode === 13) { handleLinkSubmission(); }"/>
+          <button id="go-button" onclick="handleLinkSubmission()">Go</button>
+        </div>
       </div>
       <div class="column column-fill" id="selection-column">
         <div id="tinted-images"></div>
@@ -99,6 +103,24 @@
     padding-top: 0px;
   }
 
+  #input-link {
+    background-color: #777777;
+    color:black;
+    border: 2px solid #333333;
+    align-self: center;
+  }
+  #input-link::placeholder {
+    color:black
+  }
+
+  .input-container button {
+    background-color: #777777;
+    border: 2px solid #333333;
+    border-radius: 4px;
+    padding: 5px;
+    margin:5px;
+  }
+
   .column {
     height: 100%;
     box-sizing: border-box;
@@ -120,7 +142,7 @@
     border-radius: 10px;
   }
 
-  @media (orientation: portrait){
+  @media (orientation: portrait) {
     .container {
       display: flex;
       flex-direction: column;
@@ -185,6 +207,7 @@
 
     .input-container {
       margin-right: 2px;
+      margin-bottom: 20px;
     }
 
     #preview {
