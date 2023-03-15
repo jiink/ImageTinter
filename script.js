@@ -82,15 +82,42 @@ function handleFileSelect(event) {
 	processImageEntry(url);
 }
 
+// Remove everything after the file extension.
+// Example:
+// Input: https://example.net/images/Feesh_2.png/revision/latest/
+// Output: https://example.net/images/Feesh_2.png
+function linkFilter(inputLink) {
+	// Find the position of the last dot in the inputLink string
+	const dotIndex = inputLink.lastIndexOf('.');
+  
+	// If there is no dot in the inputLink, return the original inputLink
+	if (dotIndex === -1) {
+	  return inputLink;
+	}
+  
+	// Find the position of the last forward slash after the dot
+	const slashIndex = inputLink.indexOf('/', dotIndex);
+  
+	// If there is no forward slash after the dot, return the original inputLink
+	if (slashIndex === -1) {
+	  return inputLink;
+	}
+  
+	// Return the substring from the beginning of the inputLink to the position of the slash after the dot
+	return inputLink.substring(0, slashIndex);
+  }
+
 function handleLinkSubmission() {
 	var inputLink = document.getElementById("input-link").value;
-
+	var filteredLink = linkFilter(inputLink);
+	console.log({filteredLink});
+	
 	clearContainers();
 
 	const preview = document.getElementById('preview');
-	preview.src = inputLink;
+	preview.src = filteredLink;
 
-	processImageEntry(inputLink);
+	processImageEntry(filteredLink);
 }
 
 function processImageEntry(imgUrl) {
