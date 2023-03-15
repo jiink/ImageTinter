@@ -47,6 +47,10 @@
             style="display: none"
           />
         </div>
+        <div class="input-container">
+          <input type="text" id="input-link" placeholder="OR enter image URL" onkeydown="if (event.keyCode === 13) { handleLinkSubmission(); }"/>
+          <button id="go-button" onclick="handleLinkSubmission()">Go</button>
+        </div>
       </div>
       <div class="column column-fill" id="selection-column">
         <div id="tinted-images"></div>
@@ -120,7 +124,7 @@
     border-radius: 10px;
   }
 
-  @media (orientation: portrait){
+  @media (orientation: portrait) {
     .container {
       display: flex;
       flex-direction: column;

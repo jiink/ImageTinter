@@ -52,9 +52,7 @@ function tintImage(image, color) {
 	return canvas.toDataURL();
 }
 
-function handleFileSelect(event) {
-	console.log("go script.js!!");
-
+function clearContainers(){
 	// Clear the "tinted-images" container
 	const container = document.getElementById('tinted-images');
 	container.innerHTML = '';
@@ -66,6 +64,12 @@ function handleFileSelect(event) {
 	// Reset the color label
 	const colorLabel = document.getElementById('color-label');
 	colorLabel.textContent = "Color";
+}
+
+function handleFileSelect(event) {
+	console.log("go script.js!!");
+	
+	clearContainers();
 
 	// Get the selected file and create a URL for it
 	const selectedFile = event.target.files[0];
@@ -75,9 +79,25 @@ function handleFileSelect(event) {
 	const preview = document.getElementById('preview');
 	preview.src = url;
 
+	processImageEntry(url);
+}
+
+function handleLinkSubmission() {
+	var inputLink = document.getElementById("input-link").value;
+
+	clearContainers();
+
+	const preview = document.getElementById('preview');
+	preview.src = inputLink;
+
+	processImageEntry(inputLink);
+}
+
+function processImageEntry(imgUrl) {
 	// Generate the tinted versions of the image and display them on the canvas
 	const img = new Image();
-	img.src = url;
+	img.crossOrigin = "anonymous";
+	img.src = imgUrl;
 	img.onload = function () {
 		for (let i = 0; i < palette.length; i++){
 			const dataUrlResult = tintImage(img, palette[i]);
