@@ -15,6 +15,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  font-family: "Segoe UI";
 }
 
 .container {
@@ -33,20 +34,26 @@ body {
 
 #input-link {
   background-color: #777777;
-  color: black;
+  color: rgb(255, 255, 255);
   border: 2px solid #333333;
   align-self: center;
+  padding: 5px;
+  margin-left: 5px;
+  font-family: "Segoe UI";
 }
 #input-link::placeholder {
-  color: black;
+  color: rgb(222, 222, 222);
 }
 
 .input-container button {
   background-color: #777777;
   border: 2px solid #333333;
+  color: white;
   border-radius: 4px;
   padding: 5px;
   margin: 5px;
+  font-weight: bold;
+  font-family: "Segoe UI";
 }
 
 .column {
@@ -198,7 +205,19 @@ input[type="file"] {
 
 #color-label {
   text-align: center;
+  color: #FFFF00;
+  text-shadow: -2.5px 2.5px 2px #000,
+  2.5px 2.5px 2px #000,
+  2.5px -2.5px 0 #000,
+  -2.5px -2.5px 0 #000,
+  -4.5px 4.5px 2px #ffffff,
+  4.5px 4.5px 2px #ffffff,
+  4.5px -4.5px 0 #ffffff,
+  -4.5px -4.5px 0 #ffffff;
+  font-size: 3em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 img {
   border: none;
